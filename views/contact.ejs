@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+
+<!-- Contact Form Section -->
+<div class="container mt-5">
+  <h2>Contact Us</h2>
+  <form id="contactForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" required />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" required />
+    </div>
+    <div class="mb-3">
+      <label for="message" class="form-label">Message</label>
+      <textarea class="form-control" id="message" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send Message</button>
+  </form>
+
+  <!-- Confirmation Message -->
+  <div
+    id="confirmationMessage"
+    class="alert alert-success mt-3"
+    style="display: none"
+  >
+    Thank you for your message! We will get back to you soon.
+  </div>
+</div>
+
+<%- include('partials/footer') %>
