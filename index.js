@@ -23,6 +23,36 @@ app.get("/contact", (req, res) => {
   res.render("contact.ejs");
 });
 
+app.post("/contact", async (req, res) => {
+  const { email, subject, message } = req.body;
+
+  try {
+    // Configure the email transporter
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PW,
+      },
+    });
+
+    // Define the email options
+    const mailOptions = {
+      from: email,
+      to: "bernhard.scheucher@gmail.com",
+      subject: `Message from ${email}: ${subject}`,
+      text: message,
+    };
+
+    // Send the email
+    await transporter.sendMail(mailOptions);
+    res.render("success.ejs", { email, subject });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).send("Something went wrong. Please try again later.");
+  }
+});
+
 app.get("/projects", (req, res) => {
   res.render("projects.ejs");
 });
