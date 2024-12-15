@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import env from "dotenv";
 import nodemailer from "nodemailer";
+import session from "express-session";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -10,6 +11,13 @@ env.config();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(
+  session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
