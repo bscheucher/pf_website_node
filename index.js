@@ -78,7 +78,7 @@ app.post("/contact", async (req, res) => {
 
 app.get("/projects", async (req, res) => {
   try {
-    const { rows } = await db.query("SELECT * FROM projects");
+    const { rows } = await db.query("SELECT * FROM portfolio_projects");
     console.log(rows);
     res.render("projects.ejs", { projects: rows });
   } catch (err) {
