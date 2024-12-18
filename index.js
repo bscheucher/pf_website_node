@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import env from "dotenv";
 import nodemailer from "nodemailer";
 import session from "express-session";
+import pg from "pg";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,6 +19,20 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+const { Pool } = pg;
+
+// Set up the database connection
+const db = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false, // Required for Render's managed PostgreSQL
+  },
+});
+
+db.connect()
+  .then(() => console.log("Connected to the database successfully!"))
+  .catch((err) => console.error("Database connection error:", err));
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
@@ -61,8 +76,15 @@ app.post("/contact", async (req, res) => {
   }
 });
 
-app.get("/projects", (req, res) => {
-  res.render("projects.ejs");
+app.get("/projects", async (req, res) => {
+  try {
+    const { rows } = await db.query("SELECT * FROM projects");
+    console.log(rows);
+    res.render("projects.ejs", { projects: rows });
+  } catch (err) {
+    console.error("Error occurred when fetching projects from db:", err);
+    res.status(500).send("An error occurred while fetching projects.");
+  }
 });
 
 app.listen(port, () => {
