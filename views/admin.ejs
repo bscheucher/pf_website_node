@@ -1,0 +1,74 @@
+<%- include('partials/header') %>
+
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">My Projects</h1>
+    <p class="lead text-muted">Admin Page</p>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+            <% if (projects) { projects.forEach(project => { %>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                  <p class="card-text">
+                    <strong><%= project.title %></strong><br />
+                  </p>
+                  <div class="btn-group" role="group">
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <a
+                        href="<%= project.live_demo_link %>"
+                        role="button"
+                        class="btn btn-outline-success mx-1"
+                      >
+                        Live
+                      </a>
+                      <a
+                        href="/projects/<%= project.id %>"
+                        role="button"
+                        class="btn btn-outline-info mx-1"
+                      >
+                        Edit
+                      </a>
+                      <form
+                        action="/projects/delete/<%= project.id %>"
+                        method="POST"
+                        style="display: inline"
+                      >
+                        <button
+                          type="submit"
+                          class="btn btn-danger mx-1"
+                          onclick="console.log('Form action:', this.form.action)"
+                        >
+                          Delete <%= project.id %>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }) } %>
+          </div>
+          <a
+            href="/projects/new"
+            role="button"
+            class="btn btn-lg btn-outline-secondary add-project-btn"
+          >
+            Add Project
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

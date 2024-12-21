@@ -1,0 +1,78 @@
+<%- include('partials/header') %>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Edit Project</h1>
+  <form action="/projects/<%= project.id %>" method="post">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        value="<%= project.title %>"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        rows="4"
+        required
+      >
+<%= project.description %></textarea
+      >
+    </div>
+    <div class="mb-3">
+      <label for="technologies_used" class="form-label"
+        >Technologies Used</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="technologies_used"
+        name="technologies_used"
+        value="<%= project.technologies_used %>"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="repository_link" class="form-label">Repository Link</label>
+      <input
+        type="url"
+        class="form-control"
+        id="repository_link"
+        name="repository_link"
+        value="<%= project.repository_link %>"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="live_demo_link" class="form-label">Live Demo Link</label>
+      <input
+        type="url"
+        class="form-control"
+        id="live_demo_link"
+        name="live_demo_link"
+        value="<%= project.live_demo_link %>"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="image_url" class="form-label">Image URL</label>
+      <input
+        type="url"
+        class="form-control"
+        id="image_url"
+        name="image_url"
+        value="<%= project.image_url %>"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Project</button>
+    <a href="/projects" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+
+<%- include('partials/footer') %>

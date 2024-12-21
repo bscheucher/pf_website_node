@@ -26,9 +26,10 @@
                 />
                 <div class="card-body">
                   <p class="card-text">
-                    <%= project.title %>. Implemented with:
-                    <em><%= project.technologies_used %></em>. <br />Source
-                    code:
+                    <strong><%= project.title %></strong>: <br />
+                    <%= project.description %> <br />
+                    Implemented with:
+                    <em><%= project.technologies_used %></em>. <br />
                     <a href="<%= project.repository_link %>">
                       <%= project.repository_link %>
                     </a>
@@ -48,29 +49,6 @@
               </div>
             </div>
             <% }) } %>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-          <img
-            class="card-img-top"
-            src="assets/images/work-in-progress-icon.png"
-            alt="Next project coming soon"
-            style="height: 225px; width: 100%; display: block"
-          />
-          <div class="card-body">
-            <p class="card-text">Next Project coming soon.</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <button
-                type="button"
-                class="btn btn-sm btn-outline-secondary"
-                disabled
-              >
-                Go to live project
-              </button>
-            </div>
           </div>
         </div>
       </div>
