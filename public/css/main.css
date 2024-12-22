@@ -2,3 +2,8 @@
   background-color: azure;
   width: 100%;
 }
+
+.add-user-btn {
+  background-color: rgb(250, 221, 226);
+  width: 100%;
+}
